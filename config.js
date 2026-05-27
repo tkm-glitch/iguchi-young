@@ -4,30 +4,31 @@ const SITE_CONFIG = {
     teamInfo: {
         name: "井口ヤング",
         catchphrase: "仲間と明るく・楽しく・のびのび野球！",
-        established: "1977年", // 1977年創設の伝統チーム
+        established: "1977年", 
         location: "東京都三鷹市",
-        mainGround: "三鷹市立井口小学校グラウンド", // 主な活動場所
+        mainGround: "三鷹市立井口小学校グラウンド", 
         targetAge: "年長・小学1年生〜6年生（男女問わず、通う学校も不問）",
         contactEmail: "iguchiyoung@gmail.com",
         fee: "年会費：7,000円 (井口協和会からの補助等により、お財布に優しい安心の会費設定)"
     },
 
-    // 2. SNS・外部連携リンク
+    // 2. SNS・外部連携リンク（本物のURLに修正しました）
     links: {
-        instagram: "https://www.instagram.com/iguchi_young/", // インスタURL（必要に応じて修正してください）
-        line: "https://lin.ee/xxxxxxx", // 公式LINEの友達追加URL（あれば書き換えてください）
+        instagram: "https://www.instagram.com/iguchiyoung/", 
+        facebook: "https://www.facebook.com/iguchiyoung",
+        line: "https://lin.ee/oZJ19DI", 
         email: "mailto:iguchiyoung@gmail.com"
     },
 
-    // 3. 画像パス設定（imagesフォルダ内のファイル名に書き換えてください）
+    // 3. 画像パス設定
     images: {
-        heroBackground: "images/main-hero.jpg",  // 集合写真や胴上げ写真など
-        aboutSection: "images/team-fun.jpg",     // のびのび野球をしている姿
-        recruitSection: "images/welcome.jpg",   // 体験会の様子など
-        logo: "images/logo.png"                  // チームロゴ
+        heroBackground: "images/main-hero.jpg",  
+        aboutSection: "images/team-fun.jpg",     
+        recruitSection: "images/welcome.jpg",   
+        logo: "images/logo.png"                  
     },
 
-    // 4. アピールポイント（親御さんが安心する要素）
+    // 4. アピールポイント
     features: [
         {
             title: "のびのび成長できる環境",
@@ -79,7 +80,6 @@ const SITE_CONFIG = {
     ]
 };
 
-// 他のHTMLファイルからこのデータを読み込めるようにする設定
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = SITE_CONFIG;
 }
