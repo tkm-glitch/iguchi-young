@@ -1,96 +1,126 @@
-/**
- * main.js — サイト全体の共通スクリプト
- * ※ 基本的に触らなくてOKです
- */
-
 document.addEventListener("DOMContentLoaded", () => {
+  const c = SITE_CONFIG;
+  const depth = document.body.dataset.depth || "";
 
-  /* ── ヘッダー情報を config.js から自動設定 ── */
-  if (typeof SITE !== "undefined") {
-    // ロゴのチーム名
-    document.querySelectorAll("[data-team-name]").forEach(el => {
-      el.textContent = SITE.teamName;
-    });
-    // LINEリンク
-    document.querySelectorAll("[data-line-href]").forEach(el => {
-      el.href = SITE.lineUrl;
-    });
-    // Instagram リンク
-    document.querySelectorAll("[data-insta-href]").forEach(el => {
-      el.href = SITE.instagramUrl;
-    });
-    // Instagramアカウント名
-    document.querySelectorAll("[data-insta-id]").forEach(el => {
-      el.textContent = SITE.instagramId;
-    });
-  }
+  if (document.getElementById("site-header")) renderHeader(depth);
+  if (document.getElementById("site-footer")) renderFooter(depth);
 
-  /* ── ハンバーガーメニュー ── */
-  const hamburger = document.querySelector(".hamburger");
-  const mobileNav = document.querySelector(".mobile-nav");
-  if (hamburger && mobileNav) {
-    hamburger.addEventListener("click", () => {
-      const isOpen = mobileNav.classList.toggle("open");
-      hamburger.classList.toggle("open", isOpen);
-      hamburger.setAttribute("aria-expanded", isOpen);
-    });
-    // メニュー外をクリックで閉じる
-    document.addEventListener("click", e => {
-      if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-        mobileNav.classList.remove("open");
-        hamburger.classList.remove("open");
-        hamburger.setAttribute("aria-expanded", false);
-      }
-    });
-  }
-
-  /* ── Q&A アコーディオン ── */
-  document.querySelectorAll(".faq-q").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const answer = btn.nextElementSibling;
-      const isOpen = answer.classList.toggle("open");
-      btn.setAttribute("aria-expanded", isOpen);
-    });
+  document.querySelectorAll("[data-line-href]").forEach((el) => {
+    el.href = c.links.line;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+  document.querySelectorAll("[data-instagram-href]").forEach((el) => {
+    el.href = c.links.instagram;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+  document.querySelectorAll("[data-facebook-href]").forEach((el) => {
+    el.href = c.links.facebook;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+  document.querySelectorAll("[data-email-href]").forEach((el) => {
+    el.href = c.links.email;
   });
 
-  /* ── 現在のページのナビをアクティブ表示 ── */
-  const path = location.pathname;
-  document.querySelectorAll(".global-nav a, .mobile-nav a").forEach(link => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-    const isHome = (path.endsWith("/") || path.endsWith("index.html")) && href.includes("index.html");
-    const isMatch = !isHome && href !== "index.html" && path.includes(href.replace("../", ""));
-    if (isHome || isMatch) link.classList.add("active");
+  const current = document.body.dataset.page;
+  const activeHref = current === "home" ? "index.html" : `${current}.html`;
+  document.querySelectorAll("[data-nav-link]").forEach((link) => {
+    if (link.dataset.navLink === activeHref) link.classList.add("active");
   });
 
-  /* ── ニュース一覧を news-list.js から自動生成 ── */
-  const newsContainer = document.getElementById("news-auto-list");
-  if (newsContainer && typeof NEWS_LIST !== "undefined") {
-    const limit = parseInt(newsContainer.dataset.limit) || NEWS_LIST.length;
-    const base  = newsContainer.dataset.base || "news/";
-    const items = NEWS_LIST.slice(0, limit);
-
-    if (items.length === 0) {
-      newsContainer.innerHTML = '<p style="text-align:center;color:#888;padding:24px;">記事はまだありません。</p>';
-      return;
-    }
-
-    const CAT_ICONS = { "試合":"⚾", "練習":"🏃", "イベント":"🎉", "お知らせ":"📢" };
-
-    newsContainer.innerHTML = items.map(n => {
-      const icon = CAT_ICONS[n.cat] || "📝";
-      return `
-        <a class="news-card" href="${base}${n.file}">
-          <div class="news-card-thumb">${icon}</div>
-          <div class="news-card-body">
-            <div class="news-card-meta">
-              <span class="news-card-date">${n.date.replace(/-/g, "/")}</span>
-              <span class="cat-badge cat-${n.cat}">${n.cat}</span>
-            </div>
-            <p class="news-card-title">${n.title}</p>
-          </div>
-        </a>`;
-    }).join("");
+  const menuButton = document.querySelector("[data-menu-button]");
+  const mobileNav = document.querySelector("[data-mobile-nav]");
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("is-open");
+      menuButton.classList.toggle("is-open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
   }
 
+  renderList("stats-grid", c.stats, (item) => `
+    <div class="stat">
+      <strong>${item.value}</strong>
+      <span>${item.label}</span>
+    </div>
+  `);
+
+  renderList("home-highlights", c.highlights, (item) => `
+    <article class="feature-card">
+      <h3>${item.title}</h3>
+      <p>${item.body}</p>
+    </article>
+  `);
+
+  renderList("recent-posts", c.recentPosts.slice(0, 3), newsCard);
+  renderList("news-list", c.recentPosts, newsCard);
+
+  renderList("composition-grid", c.composition, (item) => `
+    <div class="mini-card">
+      <span>${item.team}</span>
+      <strong>${item.grade}</strong>
+      <p>${item.members}</p>
+    </div>
+  `);
+
+  renderList("staff-grid", c.staff, (item) => `
+    <article class="staff-card">
+      <span>${item.role}</span>
+      <h3>${item.name}</h3>
+      ${item.detail ? `<p>${item.detail}</p>` : ""}
+    </article>
+  `);
+
+  renderList("tools-grid", c.tools, (item) => `
+    <article class="tool-card">
+      <h3>${item.name}</h3>
+      <p>${item.note}</p>
+    </article>
+  `);
+
+  renderList("faq-list", c.faqs, (item) => `
+    <details class="faq-item">
+      <summary>${item.q}</summary>
+      <p>${item.a}</p>
+    </details>
+  `);
+
+  renderList("achievements-list", c.achievements, (item) => `
+    <article class="achievement">
+      <h3>${item.year}</h3>
+      <ul>${item.items.map((x) => `<li>${x}</li>`).join("")}</ul>
+    </article>
+  `);
+
+  renderList("gallery-grid", c.images.gallery, (src, index) => `
+    <a class="gallery-item" href="${c.links.instagram}" target="_blank" rel="noopener">
+      <img src="${depth}${src}" alt="${c.name} フォトギャラリー ${index + 1}" loading="lazy">
+    </a>
+  `);
+
+  const compositionNote = document.getElementById("composition-note");
+  if (compositionNote) compositionNote.textContent = c.compositionNote;
 });
+
+function renderList(id, items, template) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = items.map(template).join("");
+}
+
+function newsCard(item) {
+  const date = item.date.replaceAll("-", ".");
+  return `
+    <article class="news-card">
+      <div>
+        <span>${date}</span>
+        <strong>${item.team}</strong>
+      </div>
+      <h3>${item.title}</h3>
+      <p>${item.excerpt}</p>
+      <a href="${item.url}" target="_blank" rel="noopener">参照元で読む</a>
+    </article>
+  `;
+}

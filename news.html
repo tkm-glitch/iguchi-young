@@ -1,84 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活動報告 - 井口ヤング</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="config.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>活動報告｜井口ヤング</title>
+  <meta name="description" content="井口ヤングの活動報告・試合結果・大会成績を、参照元の公式Jimdoサイト情報に合わせて掲載しています。">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 font-sans text-gray-800">
+<body data-page="news">
+  <header id="site-header" class="site-header"></header>
 
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-red-600 flex items-center gap-2">
-                <i class="fas fa-baseball-ball"></i> <span id="nav-team-name">井口ヤング</span>
-            </a>
-            <div class="hidden md:flex space-x-6 font-medium">
-                <a href="index.html" class="hover:text-red-600 transition">ホーム</a>
-                <a href="team.html" class="hover:text-red-600 transition">チーム紹介</a>
-                <a href="recruit.html" class="hover:text-red-600 transition">部員募集</a>
-                <a href="news.html" class="text-red-600 transition border-b-2 border-red-600">活動報告</a>
-                <a href="contact.html" class="hover:text-red-600 transition">お問い合わせ</a>
-            </div>
+  <main>
+    <section class="hero">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <span class="hero-kicker">News</span>
+          <h1>活動報告</h1>
+          <p>参照元の公式Jimdoサイトに掲載されている試合結果・活動報告をもとに、井口ヤングの近況をまとめています。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://iguchiyoung.jimdofree.com/試合結果/" target="_blank" rel="noopener">参照元の試合結果へ</a>
+            <a class="button button-secondary" href="https://www.instagram.com/iguchiyoung/" data-instagram-href>Instagramを見る</a>
+          </div>
         </div>
-    </nav>
+        <figure class="hero-media">
+          <img src="images/gallery-5.jpg" alt="井口ヤングの集合写真">
+        </figure>
+      </div>
+    </section>
 
-    <header class="bg-red-600 text-white py-16 text-center">
-        <h1 class="text-4xl font-bold mb-2">活動報告</h1>
-        <p class="text-red-100">井口ヤングの「今」を、SNSでリアルタイム発信中！</p>
-    </header>
-
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
-            <i class="fab fa-instagram text-6xl text-pink-600 mb-4 d-block"></i>
-            <h2 class="text-2xl font-bold mb-4">日々の活動は公式Instagramをチェック！</h2>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-                井口ヤングでは、子どもたちの「明るく・楽しく・のびのび」とした練習風景、試合の速報、楽しいイベントの様子を公式InstagramとFacebookで随時更新しています。<br>
-                保護者の方や、入部をご検討中の方はぜひフォローしてご覧ください！
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-                <a id="link-instagram" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-3 px-6 rounded-xl hover:opacity-90 transition shadow-md">
-                    <i class="fab fa-instagram text-xl"></i> Instagramを見る
-                </a>
-                <a id="link-facebook" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-blue-700 transition shadow-md">
-                    <i class="fab fa-facebook text-xl"></i> Facebookを見る
-                </a>
-            </div>
+    <section class="section band-white">
+      <div class="container">
+        <div class="center">
+          <p class="eyebrow">Recent Posts</p>
+          <h2 class="section-title">最近の試合・活動</h2>
+          <p class="section-lead">Aチーム、Bチーム、Cチームの公式掲載情報から抜粋しています。</p>
         </div>
+        <div id="news-list" class="grid grid-3"></div>
+      </div>
+    </section>
 
-        <div class="mt-12">
-            <h3 class="text-xl font-bold mb-6 text-gray-700 border-l-4 border-red-600 pl-3">最新のお知らせ</h3>
-            <div class="grid gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4 items-center">
-                    <div class="bg-red-100 text-red-600 p-3 rounded-lg font-bold text-center min-w-[70px]">
-                        <span class="text-sm block">2026年</span>
-                        <span class="text-lg">春</span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg text-gray-900">新入部員・体験会いつでも大歓迎！</h4>
-                        <p class="text-gray-500 text-sm mt-1">井口小学校グラウンドにて元気に活動中。いつでも遊びに来てください！</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <p class="eyebrow">Results</p>
+          <h2 class="section-title">大会成績</h2>
         </div>
-    </main>
+        <div id="achievements-list" class="grid grid-3"></div>
+      </div>
+    </section>
 
-    <footer class="bg-gray-950 text-gray-400 py-8 text-center text-sm">
-        <p>&copy; 2026 <span id="footer-team-name">井口ヤング</span>. All Rights Reserved.</p>
-    </footer>
+    <section class="section band-green">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Official Channels</p>
+          <h2 class="section-title">最新情報は公式SNSでも発信中</h2>
+          <p class="section-lead">日々の活動写真やお知らせは、InstagramとFacebookでも確認できます。体験・見学のご相談は公式LINEがスムーズです。</p>
+        </div>
+        <div class="action-row">
+          <a class="button button-primary" href="https://lin.ee/oZJ19DI" data-line-href>公式LINE</a>
+          <a class="button button-outline" href="https://www.instagram.com/iguchiyoung/" data-instagram-href>Instagram</a>
+          <a class="button button-outline" href="https://www.facebook.com/iguchiyoung" data-facebook-href>Facebook</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof SITE_CONFIG !== 'undefined') {
-                document.getElementById('nav-team-name').textContent = SITE_CONFIG.teamInfo.name;
-                document.getElementById('footer-team-name').textContent = SITE_CONFIG.teamInfo.name;
-                document.getElementById('link-instagram').href = SITE_CONFIG.links.instagram;
-                document.getElementById('link-facebook').href = SITE_CONFIG.links.facebook;
-            }
-        });
-    </script>
+  <footer id="site-footer" class="site-footer"></footer>
+  <a class="floating-line" href="https://lin.ee/oZJ19DI" data-line-href>LINEで相談</a>
+
+  <script src="config.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
