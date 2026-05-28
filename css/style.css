@@ -1,17 +1,17 @@
 :root {
-  --green: #147a3f;
-  --green-dark: #0d4d2b;
-  --green-soft: #e9f5ee;
-  --red: #c62f2f;
-  --red-soft: #fff0ec;
+  --green: #b91c2b;
+  --green-dark: #7f101b;
+  --green-soft: #fff1f2;
+  --red: #b91c2b;
+  --red-soft: #fff1f2;
   --gold: #f1b83a;
-  --blue: #246a9f;
-  --ink: #1c2520;
-  --muted: #607064;
-  --line: #d9e1db;
+  --blue: #8f2430;
+  --ink: #251a1c;
+  --muted: #716064;
+  --line: #ead7da;
   --paper: #ffffff;
-  --bg: #f7f8f4;
-  --shadow: 0 12px 30px rgba(20, 44, 31, 0.12);
+  --bg: #fff8f6;
+  --shadow: 0 12px 30px rgba(127, 16, 27, 0.16);
   --radius: 8px;
   --max: 1120px;
   --font: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
@@ -73,7 +73,7 @@ a:hover {
 }
 
 .band-dark {
-  background: #15291d;
+  background: #2a070c;
   color: #fff;
 }
 
@@ -175,13 +175,13 @@ a:hover {
 
 .global-nav .nav-contact,
 .mobile-nav .nav-contact {
-  background: var(--green);
+  background: #06c755;
   color: #fff;
 }
 
 .global-nav .nav-contact:hover,
 .mobile-nav .nav-contact:hover {
-  background: var(--green-dark);
+  background: #05ad4c;
   color: #fff;
 }
 
@@ -235,7 +235,9 @@ a:hover {
 }
 
 .hero {
-  background: #102f1e;
+  background:
+    radial-gradient(circle at 75% 20%, rgba(241, 184, 58, 0.16), transparent 28%),
+    linear-gradient(135deg, #3a070b 0%, #7f101b 48%, #b91c2b 100%);
   color: #fff;
 }
 
@@ -260,7 +262,7 @@ a:hover {
   align-items: center;
   gap: 8px;
   margin-bottom: 18px;
-  color: #17301f;
+  color: #3a070b;
   background: var(--gold);
   border-radius: 999px;
   padding: 5px 12px;
@@ -329,6 +331,14 @@ a:hover {
 .button-primary:hover {
   background: var(--green-dark);
   color: #fff;
+}
+
+.button-primary[data-line-href] {
+  background: #06c755;
+}
+
+.button-primary[data-line-href]:hover {
+  background: #05ad4c;
 }
 
 .button-secondary {
@@ -612,7 +622,7 @@ a:hover {
 }
 
 .site-footer {
-  background: #111a14;
+  background: #1c090c;
   color: rgba(255, 255, 255, 0.75);
   padding: 44px 0 24px;
 }
